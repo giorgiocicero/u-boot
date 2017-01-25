@@ -80,7 +80,7 @@ DECLARE_GLOBAL_DATA_PTR;
 
 int dram_init(void)
 {
-	gd->ram_size = imx_ddr_size();
+	gd->ram_size = imx_ddr_size() - CONFIG_TEE_RAM_SIZE;
 	return 0;
 }
 
