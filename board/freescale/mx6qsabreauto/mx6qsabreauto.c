@@ -87,7 +87,11 @@ DECLARE_GLOBAL_DATA_PTR;
 
 int dram_init(void)
 {
+	#ifdef TEE_RAM_SIZE
+	gd->ram_size = imx_ddr_size() - CONFIG_TEE_RAM_SIZE;
+	#else
 	gd->ram_size = get_ram_size((void *)PHYS_SDRAM, PHYS_SDRAM_SIZE);
+	#endif
 
 	return 0;
 }
